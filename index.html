@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Smart Community Help Board</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="light-mode">
+    <!-- Running Line Banner -->
+    <div class="running-line-container">
+        <div class="running-line-text">
+            THIS DEMO WAS DONE BY TEAM COFFEE CODERS &nbsp;&bull;&nbsp; THIS DEMO WAS DONE BY TEAM COFFEE CODERS
+            &nbsp;&bull;&nbsp; THIS DEMO WAS DONE BY TEAM COFFEE CODERS &nbsp;&bull;&nbsp; THIS DEMO WAS DONE BY TEAM
+            COFFEE CODERS
+        </div>
+    </div>
+
+    <!-- Watermark -->
+    <div class="watermark"></div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Navigation Bar (Hidden on Login) -->
+    <nav id="top-nav" class="top-nav hidden">
+        <div class="nav-content">
+            <div class="logo">
+                <i class="fa-solid fa-arrow-left hidden" id="nav-back"
+                    style="margin-right: 12px; cursor: pointer; color: var(--text-main);"></i>
+                <i class="fa-solid fa-hands-holding-circle" id="nav-logo-icon"></i>
+                <span style="color: black;">ICOMHELP</span>
+            </div>
+            <div class="nav-actions">
+                <div class="notification-bell" id="notification-bell">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="badge hidden" id="bell-badge">0</span>
+                </div>
+                <div class="profile-icon" id="nav-profile">
+                    <img src="https://ui-avatars.com/api/?name=User&background=2563EB&color=fff" alt="Profile"
+                        id="nav-avatar">
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main App Container for Dynamic Routing -->
+    <main id="app">
+        <!-- Views rendered via JS -->
+    </main>
+
+    <!-- Bottom Navigation Bar (Hidden on Login) -->
+    <nav id="bottom-nav" class="bottom-nav hidden">
+        <a href="#" class="nav-item active" data-target="home">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+        </a>
+        <a href="#" class="nav-item" data-target="explore">
+            <i class="fa-solid fa-compass"></i>
+            <span>Explore</span>
+        </a>
+        <a href="#" class="nav-item" data-target="post">
+            <div class="nav-fab">
+                <i class="fa-solid fa-plus"></i>
+            </div>
+        </a>
+        <a href="#" class="nav-item" data-target="tasks">
+            <i class="fa-solid fa-clipboard-list"></i>
+            <span>Tasks</span>
+        </a>
+        <a href="#" class="nav-item" data-target="profile">
+            <i class="fa-solid fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <!-- Chatbot FAB -->
+    <div class="chatbot-fab" id="chatbot-fab">
+        <i class="fa-solid fa-robot"></i>
+    </div>
+
+    <!-- Chatbot Panel -->
+    <div class="chatbot-panel hidden" id="chatbot-panel">
+        <div class="chat-header">
+            <div class="chat-title">
+                <i class="fa-solid fa-robot"></i>
+                <span>ICOMHELP AI</span>
+            </div>
+            <i class="fa-solid fa-times" id="close-chat" style="cursor: pointer;"></i>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+            <div class="chat-bubble bot">Hi! I'm your ICOMHELP Assistant. Tap the microphone to talk to me!</div>
+        </div>
+        <div class="chat-input-area">
+            <select id="chat-lang" class="chat-lang-select" title="Language">
+                <option value="en-US">EN</option>
+                <option value="ta-IN">TA</option>
+            </select>
+            <input type="text" id="chat-text-input" class="chat-text-input" placeholder="Type message...">
+            <div class="chat-mic-btn" id="chat-mic-btn" title="Voice Input">
+                <i class="fa-solid fa-microphone"></i>
+            </div>
+            <div class="chat-send-btn hidden" id="chat-send-btn" title="Send Text">
+                <i class="fa-solid fa-paper-plane"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/store.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Community Help Board</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            color: #fff;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.05);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 10px;
+            background: #ff4d4d;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #ff1a1a;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>🚀 Smart Community Help Board</header>
+
+    <div class="container">
+
+        <div class="card">
+            <h3>📢 Post Help Request</h3>
+            <p>Need help? Post your request</p>
+            <button onclick="postHelp()">Post</button>
+        </div>
+
+        <div class="card">
+            <h3>🤝 View Requests</h3>
+            <p>Help others in your area</p>
+            <button onclick="viewHelp()">View</button>
+        </div>
+
+        <div class="card">
+            <h3>🚨 Emergency SOS</h3>
+            <p>Instant alert to contacts</p>
+            <button onclick="sos()">Activate</button>
+        </div>
+
+        <div class="card">
+            <h3>📍 Location Help</h3>
+            <p>Find nearby support</p>
+            <button onclick="locationHelp()">Find</button>
+        </div>
+
+    </div>
+
+    <script>
+        function postHelp() {
+            let msg = prompt("Enter your help request:");
+            if (msg) {
+                localStorage.setItem("help", msg);
+                alert("Request posted!");
+            }
+        }
+
+        function viewHelp() {
+            let msg = localStorage.getItem("help");
+            alert(msg ? msg : "No requests yet");
+        }
+
+        function sos() {
+            alert("🚨 SOS Alert Sent!");
+        }
+
+        function locationHelp() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(pos => {
+                    alert("Your Location:\nLat: " + pos.coords.latitude + "\nLng: " + pos.coords.longitude);
+                });
+            } else {
+                alert("Location not supported");
+            }
+        }
+    </script>
+
+</body>
+
+</html>https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap
